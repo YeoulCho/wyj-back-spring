@@ -1,8 +1,8 @@
 package com.example.springPart.member;
 
 
-import com.example.springPart.member.form.MemberLoginRequestForm;
-import com.example.springPart.member.form.MemberLoginResponseForm;
+import com.example.springPart.member.controller.form.MemberLoginRequestForm;
+import com.example.springPart.member.controller.form.MemberLoginResponseForm;
 import com.example.springPart.member.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

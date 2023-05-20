@@ -1,4 +1,4 @@
-package com.example.springPart.member.form;
+package com.example.springPart.member.controller.form;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
