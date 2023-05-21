@@ -4,10 +4,10 @@ import com.example.springPart.board.entity.Board;
 import com.example.springPart.board.entity.Content;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-
+@Getter
 @RequiredArgsConstructor
 public class WriteBoardRequestForm {
-    final Long memberId;
+    final String memberId;
     @Getter
     final String title;
     @Getter
