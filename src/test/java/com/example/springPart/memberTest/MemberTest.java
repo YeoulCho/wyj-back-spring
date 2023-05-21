@@ -5,9 +5,7 @@ import com.example.springPart.member.entity.Member;
 import com.example.springPart.member.entity.RoleType;
 import com.example.springPart.member.repository.MemberRepository;
 import com.example.springPart.member.service.MemberService;
-import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +25,11 @@ public class MemberTest {
         final String email = "test@test.com";
         final String password = "test";
         final RoleType role = NORMAL;
+        final Integer businessNumber = 1234567899;
 
-        MemberRequestForm requestForm = new MemberRequestForm(email, password, role);
-        //Member member = memberRepository.save(requestForm.toMember());
-        Member member = memberService.register(requestForm);
+        MemberRequestForm requestForm = new MemberRequestForm(email, password, role, businessNumber);
+        Member member = requestForm.toMember();
+        memberRepository.save(member);
         assertEquals(email, member.getEmail());
         assertEquals(password, member.getPassword());
     }

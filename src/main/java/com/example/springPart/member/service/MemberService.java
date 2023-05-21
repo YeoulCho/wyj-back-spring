@@ -10,7 +10,7 @@ import com.example.springPart.member.controller.form.MemberRequestForm;
 public interface MemberService {
     MemberLoginResponseForm login(MemberLoginRequestForm requestForm);
 
-    Member register(MemberRequestForm requestForm);
+    Boolean register(MemberRequestForm requestForm);
 
     void delete(MemberLoginRequestForm requestForm);
 

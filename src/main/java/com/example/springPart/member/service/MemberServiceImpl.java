@@ -41,19 +41,19 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public Member register(MemberRequestForm requestForm) {
+    public Boolean register(MemberRequestForm requestForm) {
         //가입한 회원이면?
         final Optional<Member> maybeMember = memberRepository.findByEmail(requestForm.getEmail());
         if(maybeMember.isPresent()) {
             log.debug("이미 등록된 회원이라 가입할 수 없습니다.");
-            return null;
+            return false;
         }
         final Member member = requestForm.toMember();
         memberRepository.save(member);
         final Role role = roleRepository.findByRoleType(requestForm.getRoleType()).get();
-        final MemberRole memberRole = new MemberRole(member, role);
+        final MemberRole memberRole = new MemberRole(member, role, requestForm.getBusinessNumber());
         memberRoleRepository.save(memberRole);
-        return member;
+        return true;
     }
 
     @Override

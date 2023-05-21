@@ -29,13 +29,10 @@ public class MemberController {
     }
 
     @PostMapping("/signUp")
-    public Long signUp(@RequestBody MemberRequestForm memberRequestForm) {
+    public void signUp(@RequestBody MemberRequestForm memberRequestForm) {
         System.out.println(memberRequestForm);
-        Member registerdMember = memberService.register(memberRequestForm);
-        if(registerdMember==null) {
-            return -1L;
-        }
-        return registerdMember.getId();
+        memberService.register(memberRequestForm);
+
     }
 
 }
