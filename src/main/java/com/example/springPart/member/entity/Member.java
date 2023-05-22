@@ -3,6 +3,7 @@ package com.example.springPart.member.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
@@ -19,15 +20,15 @@ public class Member {
     @OneToOne(mappedBy = "member", fetch = FetchType.LAZY)
     private MemberRole memberRole;
 
-    public Member(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
+    @Getter
+    @Setter
+    private String userToken;
 
     public Member(String email, String password, MemberRole memberRole) {
         this.email = email;
         this.password = password;
         this.memberRole = memberRole;
+        this.userToken = null;
     }
 
 }

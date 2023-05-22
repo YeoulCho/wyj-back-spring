@@ -35,7 +35,9 @@ public class MemberServiceImpl implements MemberService{
         Member member = correctedMember.get();
         if (member.getPassword().equals(requestForm.getPassword())) {
             log.info("로그인 성공");
-            return new MemberLoginResponseForm(UUID.randomUUID());
+            UUID userToken = UUID.randomUUID();
+            member.setUserToken(String.valueOf(userToken));
+            return new MemberLoginResponseForm(userToken);
         }
         return new MemberLoginResponseForm(null);
     }
