@@ -1,7 +1,9 @@
 package com.example.springPart.board.service;
 
+import com.example.springPart.board.controller.form.ContentResponseForm;
 import com.example.springPart.board.controller.form.WriteBoardRequestForm;
 import com.example.springPart.board.entity.Board;
+import com.example.springPart.board.entity.Content;
 import com.example.springPart.board.repository.BoardRepository;
 import com.example.springPart.board.repository.ContentRepository;
 
@@ -12,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,13 +54,18 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public Board read(Long boardId) {
+    public ContentResponseForm read(Long boardId) throws InterruptedException {
         Optional<Board> maybeBoard = boardRepository.findById(boardId);
         if(maybeBoard.isEmpty()) {
             log.debug("존재하지 않는 게시물 입니다.");
             return null;
         }
-        return maybeBoard.get();
+        Content content = maybeBoard.get().getContent();
+        ContentResponseForm res = new ContentResponseForm();
+        res.setBoard(maybeBoard.get());
+        res.setContent(maybeBoard.get().getContent().getContent());
+        Thread.sleep(1000);
+        return res;
     }
 
     @Override

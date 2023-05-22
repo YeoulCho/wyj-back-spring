@@ -1,12 +1,12 @@
 package com.example.springPart.board.controller;
 
+import com.example.springPart.board.controller.form.ContentResponseForm;
 import com.example.springPart.board.controller.form.WriteBoardRequestForm;
 import com.example.springPart.board.entity.Board;
 import com.example.springPart.board.service.BoardService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +26,6 @@ public class BoardController {
     }
 
     @GetMapping("/list-board")
-    @Transactional
     public List<Board> listBoard(){
         log.info("listBoard()");
 
@@ -34,5 +33,12 @@ public class BoardController {
         log.info("boardList()");
 
         return boardList;
+    }
+
+    @GetMapping("/{boardId}")
+@Transactional
+    public ContentResponseForm getBoard(@PathVariable("boardId") Long boardId) throws InterruptedException {
+        log.info("getBoard()");
+        return boardService.read(boardId);
     }
 }
