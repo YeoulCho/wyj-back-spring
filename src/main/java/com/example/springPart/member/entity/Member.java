@@ -24,6 +24,11 @@ public class Member {
     @Setter
     private String userToken;
 
+    public Member(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public Member(String email, String password, MemberRole memberRole) {
         this.email = email;
         this.password = password;
